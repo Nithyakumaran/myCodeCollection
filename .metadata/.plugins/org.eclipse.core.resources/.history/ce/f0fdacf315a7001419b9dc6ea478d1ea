@@ -1,0 +1,48 @@
+package Solution;
+
+import java.io.*;
+/**
+ * This class is used to find if the given number is a fibonacci number
+ * @author gnanasnn
+ *
+ */
+public class Solution {
+
+	public static String isFibo(long w) {
+
+		double X1 = 5 * Math.pow(w, 2) + 4;
+		double X2 = 5 * Math.pow(w, 2) - 4;
+
+		long X1_sqrt = (long) Math.sqrt(X1);
+		long X2_sqrt = (long) Math.sqrt(X2);
+
+		if ((X1_sqrt * X1_sqrt == X1) || (X2_sqrt * X2_sqrt == X2))
+			return "IsFibo";
+		else
+			return "IsNotFibo";
+
+	}
+
+	public static void main(String[] args) throws IOException {
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String input;
+		int testCases = 0;
+
+		if ((input = br.readLine()) != null) {
+			testCases = Integer.parseInt(input);
+		}
+
+		for (long i = 0; i < testCases; i++) {
+
+			if ((input = br.readLine()) != null) {
+				long data = Long.parseLong(input);
+				System.out.println(isFibo(data));
+
+			}
+
+		}
+
+	}
+
+}
