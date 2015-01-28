@@ -1,17 +1,15 @@
 package fibo;
 
 import java.io.*;
-
 /**
  * This class is used to find if the given number is a fibonacci number
- * 
  * @author gnanasnn
  *
  */
 public class Solution {
 	/**
-	 * @Desc This function provides a mathematical approximation to find if the
-	 *       provided number is fibonacci
+	 * @Desc This function provides a mathematical approximation 
+	 * 			to find if the provided number is fibonacci
 	 * @param input
 	 * @return boolean in String format
 	 */
@@ -29,11 +27,9 @@ public class Solution {
 			return "IsNotFibo";
 
 	}
-
 	/**
-	 * @Desc This is main function. It takes in number of test cases from users.
-	 *       For every testcase it returns if the provided number is a Fibonnaci
-	 *       number or not
+	 * @Desc	This is main function. It takes in number of test cases from users. 
+	 * 			For every testcase it returns if the provided number is a Fibonnaci number or not
 	 * @param args
 	 * @throws IOException
 	 */
