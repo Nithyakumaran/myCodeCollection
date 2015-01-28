@@ -26,6 +26,8 @@ public class Solution {
 	
 	public static void main(String[] args){
 		int[] intArr= {1, 101, 2, 3, 100, 4, 5};
+		
+		
 		System.out.println(subSequenceSum(intArr, intArr[0],1));
 		
 	}
