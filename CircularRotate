@@ -1,0 +1,13 @@
+class CircularRotate{
+	public static void main(String[] args){
+		System.out.println(“Program to rotate bit”);
+		int i=64;
+		int len= Integer.toBinaryString(i).length();
+		int result= rotate(i,len/2);
+System.out.println(i +”It Binary Equivalent =”+ Integer.toBinaryString(i));
+System.out.println(result+”It Binary Equivalent =”+ Integer.toBinaryString(result));	
+	}
+	public static rotate(int i, int k){
+	return (i>>>k)| (i<<(-k);
+	}
+}
