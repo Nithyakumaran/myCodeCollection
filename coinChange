@@ -1,0 +1,26 @@
+class coinChange{
+	public static void main(String[] args){
+		int[] coins={1,2,3,5,10,20};
+		int val=1;
+		System.out.println("Minimum number of coins "+findChange(coins,val,0));
+	}
+	
+	//1. Number of coins and value;
+	//2. if(val==0) return coins;
+	
+	public static int findChange(int[] denom, int val, int coins){
+		System.out.println("("+val+","+coins+")");
+		int min= Integer.MAX_VALUE;
+		if(val==0) return coins;
+		if(val<0) return min;
+		for(int i: denom){
+			if(i<=val){
+			int numberOfCoins=findChange(denom, val-i,coins+1);
+			min= numberOfCoins>min?min:numberOfCoins;
+			}
+			
+		}
+		
+		return min;
+	}
+}
