@@ -1,0 +1,23 @@
+class DiagonalSum{
+	public static void main(String[] args){
+		Tree t= new Tree(4);
+		t.addNode(2);
+		t.addNode(1);
+		t.addNode(3);
+		t.addNode(6);
+		t.addNode(5);
+		t.addNode(8);
+	findDiagonalSum(t,new HashMap<Integer,Integer>(),0);
+	}
+	public static void findDiagonalSum(Tree t, HashMap<Integer,Integer> h, int diag){
+		if(t==null && h!=null)
+ System.out.println(“Diagonal Sum for D--”+diag+” is ”+h.get(diag));
+		else{
+			if(h==null) h= new HashMap<Integer,Integer>();
+			else if(h.contains(diag)) h.put(diag,(h.get(diag)+t.val));
+			else	h.put(diag,h.get(diag));
+		findDiagonalSum(t.right,h,diag);
+		findDiagonalSum(t.left,h,diag+1);
+		}
+	}
+}
