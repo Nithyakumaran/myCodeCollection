@@ -1,0 +1,22 @@
+public class FindMinDepth{
+
+	public static void main(String[] args){
+		System.out.println(“Program to find Min Depth”);
+		Tree t= new Tree(4);
+		t.addNode(2);
+		t.addNode(1);
+		t.addNode(3);
+		t.addNode(6);
+		t.addNode(5);
+		t.addNode(8);
+		System.out.println(minDepth(t));
+	}
+	
+	public static int minDepth(Tree t){
+		if(t==null) return 0;
+		if(t.left==null && t.right==null) return 1;
+		return 1+ Math.min(minDepth(t.left), minDepth(t.right));
+	}
+}
+
+
