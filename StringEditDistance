@@ -1,0 +1,38 @@
+/**
+ * 
+ */
+package com.edit.distance;
+
+/**
+ * @author nithya
+ *
+ */
+public class StringEditDistance {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		System.out.println("Calcuate Edit Distance between strings");
+		String test1="Nithya";
+		String test2="geeker";
+		
+		System.out.println("Distance between "+test1+" and "+ test2 +" is " +editDistance(test1, test2, test1.length()-1, test2.length()-1));
+	}
+	
+	public static int editDistance(String str1, String str2, int s1, int s2){
+		if(s1<0 || s2<0) return 0;
+		if(str1.length()==0) return str2.length();
+		
+		if(str2.length()==0) return str1.length();
+		
+		if(str1.charAt(s1)== str2.charAt(s2)) return editDistance(str1, str2, s1-1,s2-1);
+		
+		return 1+ min(editDistance(str1, str2, s1, s2-1), editDistance(str1, str2, s1-1, s2), editDistance(str1,str2,s1-1,s2-1));
+	}
+	
+	public static int min(int i,int j, int k){
+		int min=i<j?i<k?i:k:j<k?j:k; 
+		return min;
+	}
+}
