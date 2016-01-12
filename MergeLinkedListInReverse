@@ -1,0 +1,38 @@
+/*
+ * @Date Dec 1,2015
+ * @See http://www.geeksforgeeks.org/merge-two-sorted-linked-lists-such-that-merged-list-is-in-reverse-order/
+ * @desc Given two linked lists sorted in increasing order.<p>
+ * 		 Merge them such a way that the result list is in decreasing order <p>
+ * 		(reverse order).
+ */
+public class MergeLinkedListInReverse {
+	
+	public static void main(String[] args){
+		LinkedList L1= new LinkedList(5);
+		L1.add(10);
+		L1.add(15);
+		L1.add(40);
+		
+		LinkedList l2= new LinkedList(2);
+		l2.add(3);
+		l2.add(20);
+		System.out.println(L1);
+	}
+	
+	/**
+	 * @Desc 
+	 * @param l1
+	 * @param l2
+	 * @param result
+	 * @return
+	 */
+	public static LinkedList mergeReverse(LinkedList l1, LinkedList l2, LinkedList result){
+		if(l1==null^l2==null) return new LinkedList(l1==null?l2.value:l1.value);
+		if(l1.next==null && l2.next==null) return new LinkedList(l1.value>l2.value?l1.value:l2.value);
+		//result= mergeRever
+		
+		//result= merge
+		
+		return result;
+	}
+}
