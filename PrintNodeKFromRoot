@@ -1,0 +1,28 @@
+
+public class PrintNodeKFromRoot {
+
+	public static void main(String[] args) {
+		
+		Tree t= new Tree(4);
+		t.addNode(2);
+		t.addNode(1);
+		t.addNode(3);
+		t.addNode(6);
+		t.addNode(5);
+		t.addNode(8);
+		
+		printNodeKfromRoot(t, 1);
+		
+	}
+	
+	public static void printNodeKfromRoot(Tree t, int k){
+		if(t==null) return;
+		if(k<=0) {
+		System.out.println(t.val);
+		}
+		printNodeKfromRoot(t.left,k-1);
+		printNodeKfromRoot(t.right,k-1);
+
+		}
+
+}
