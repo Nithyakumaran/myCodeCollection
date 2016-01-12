@@ -1,0 +1,18 @@
+class LongestValidSubString{
+	public static void main(String[] args){
+		String str=”((()”;
+		System.out.println(“Length of valid Substring=”+ validSubString(str,0,0,0));
+	}
+	public static int validSubstring(String str, int pos, int left, int right){
+		if(str==null) return 0;
+		if(pos>str.length()-1) return doubleMin(left,right);
+		if(str.charAt(pos)==’(‘) left++;
+		if(str.charAt(pos)==’)‘ && left>right) right++;
+		return validSubstring(str, pos+1,left,right);
+
+	}
+
+	public static int doubleMin(int left, int right){
+		return 2*Math.min(left,right);
+	}
+}
