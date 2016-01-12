@@ -1,0 +1,29 @@
+import java.util.*;
+
+class RemoveCommon{
+	public static void main(String[] args){
+		String str= "test program";
+		String mask= "testp";
+		System.out.println("Original String ::"+str);
+		System.out.println("Mask String ::"+mask);
+		System.out.println("Masked Output String ::"+remove(str,mask));
+	}
+	//1. mask in hashMap or boolean array (both are okay)
+	//2. Initialize stringBuffer
+	//3. Interate through str and append if character not in hashMap
+	//4. return stringBuffer
+	//Running time O(n+m) Memory O(m)+O(1)
+	static String remove(String str, String mask){
+		
+		HashMap<String,Boolean> h = new HashMap<String,Boolean>();
+		for(int i=0;i<mask.length();i++)
+			if(!h.containsKey(mask.charAt(i))) h.put(""+mask.charAt(i),true);
+		
+		StringBuffer stub= new StringBuffer();
+		
+		for(int i=0;i<str.length();i++)
+			if(!h.containsKey(""+str.charAt(i))) stub.append(""+str.charAt(i));
+		
+		return stub.toString();
+	}
+}
