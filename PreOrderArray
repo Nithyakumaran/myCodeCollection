@@ -1,0 +1,25 @@
+import java.util.Stack;
+
+public class PreOrderArray {
+	public static void main(String[] args){
+		
+		int[] arr= {4,2,1,3,6,5,12};
+		System.out.println(isPreOrder(arr));
+	}
+	public static boolean isPreOrder(int[] arr){
+		int root= Integer.MIN_VALUE;
+		Stack<Integer> s= new Stack<Integer>();
+		for(int i: arr){
+			if(i<root) return false;
+			
+			while(!s.isEmpty() && s.peek()<i){
+				root= s.pop();
+			}
+			
+			s.push(i);
+		}
+		
+		return true;
+		
+	}
+}
