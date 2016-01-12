@@ -1,0 +1,35 @@
+public class RemoveHalfNodes{
+	public static void main(String[] args){
+System.out.println(“Program to remove Half Nodes);		
+Tree t= new Tree(4);
+		t.addNode(2);
+		t.addNode(1);
+		t.addNode(3);
+		t.addNode(6);
+		t.addNode(8);
+		t.addNode(7);
+		t.addNode(9);
+		System.out.println(“Original Tree \t”+ t);
+		System.out.println(“Pruned Tree\t”+ removeHalfNodes(t));
+	}
+
+/**
+*  Step 1: If Half Node set Parent Child to Childs Child
+*
+**/
+public static Tree removeHalfNodes(Tree t){
+	if(t==null) return null;
+	if(isHalfNode(t)) return t.left!=null? t.left:t.right;
+	t.left= removeHalfNodes(t.left);
+	t.right=removeHalfNodes(t.right);
+	return t;
+}
+
+public static boolean isHalfNode(Tree t){
+
+return (t.left!=null ^ t.right!=null);
+
+}	
+
+	
+}
