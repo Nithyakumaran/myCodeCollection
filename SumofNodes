@@ -1,0 +1,56 @@
+
+public class SumofNodes {
+	public static void main(String[] args){
+		System.out.println(“Program to print nodes that sum up to given value”);
+		Tree t= new Tree(4);
+		t.addNode(2);
+		t.addNode(1);
+		t.addNode(3);
+		t.addNode(6);
+		t.addNode(5);
+		t.addNode(8);
+		int val=10;
+		findNode(t,val);
+	}
+	static void findNode(Tree root, int val){
+		if(root==null) return;
+		ArrayList<Integer> reverse=reverseInorder(Tree root);
+		ArrayList<Integer> straight= inorder(Tree root);
+		int i=0;
+		int j=reverse.size()-1;
+while(i>j){
+		
+			int sum =reverse[j]+straight[i];
+			if(sum==val) {
+				System.out.println(reverse.get(j)+” and ”+straight.get(i));
+				break;
+			}
+			else{
+				if(sum>val)
+					j--;
+				else
+					i++;
+
+			}
+
+				
+		}
+	}
+	static ArrayList<Integer> reverseInorder(Tree t){
+		ArrayList<Integer> arr= new ArrayList<Integer>();
+		if(t==null) return arr;
+		arr.addAll(reverseInorder(t.right));
+		arr.add(t.val);
+		arr.addAll(reverseInorder(t.left));
+	}
+	static ArrayList<Integer> inorder(Tree t){
+		ArrayList<Integer> arr= new ArrayList<Integer>();
+		if(t==null) return arr;
+arr.addAll(reverseInorder(t.left));		
+		arr.add(t.val);
+		arr.addAll(reverseInorder(t.right));
+	}
+
+
+}
+
