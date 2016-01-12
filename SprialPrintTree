@@ -1,0 +1,44 @@
+import java.util.Stack;
+
+public class SprialPrintTree {
+
+	public static void main(String[] args){
+		System.out.println("Program to print tree spirally");
+		Tree t=new Tree(4);
+		t.addNode(2);
+		t.addNode(1);
+		t.addNode(3);
+		t.addNode(6);
+		t.addNode(5);
+		t.addNode(7);
+		System.out.println(t);
+		Stack<Tree> s1= new Stack<Tree>();
+		Stack<Tree> s2= new Stack<Tree>();
+		s1.push(t);
+		printSpiral(s1, s2);
+	}
+	
+	public static void printSpiral( Stack<Tree> s1, Stack<Tree> s2){
+		
+		
+		
+while(s1.isEmpty()^s2.isEmpty()){		
+		while(!s1.isEmpty()){
+			Tree t= s1.pop();
+			System.out.print(t.val+"-->");
+			if(t.left!=null) s2.push(t.left);
+			if(t.right!=null) s2.push(t.right);
+		}
+
+		
+		while(!s2.isEmpty()){
+			Tree t= s2.pop();
+			System.out.print(t.val+"-->");
+			
+			if(t.right!=null) s1.push(t.right);
+			if(t.left!=null) s1.push(t.left);
+		}
+		printSpiral(s1, s2);
+	}
+	}
+}
