@@ -1,0 +1,36 @@
+package com.edit.distance;
+
+public class RemoveDuplicates {
+	public static void main(String[] args){
+		System.out.println("Program to remove duplicates");
+		String str="geeksforgeeks";
+		char[] chr= str.toCharArray();
+		printArray(chr);
+		removeDuplicates(chr);
+	}
+	
+	public static void removeDuplicates(char[] c){
+		if(c.length<=2) return ;
+		int tail=0;
+		
+		for(int i=1;i<c.length;i++){
+			int j;
+			for(j=0;j<c.length;j++){
+				if(c[i]==c[j]) break;
+				
+			}
+			if(j==tail){
+				c[tail]=c[i];
+				++tail;
+			}
+			
+		}
+		c[tail]=0;
+		printArray( c);
+	}
+	public static void printArray(char[] chr){
+		for(char c:chr)	
+			System.out.print(c);
+		System.out.println();
+	}
+}
