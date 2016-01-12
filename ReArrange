@@ -1,0 +1,45 @@
+/** Example:
+* arr	{50,40}
+* index	{1,0}
+*	Step: Pos=0 
+**/
+class ReArrange{
+	public static void main(String[] args){
+		System.out.println("Program to rearrange an array");
+		int[] arr={50, 40, 70, 60, 90};
+		int[] index = {3,  0,  4,  1,  2};
+		int[] temp= arr.clone();
+		System.out.print("Original Array");
+		printArray(arr);
+		System.out.print("Index Array");
+		printArray(index);
+		for(int pos=0;pos<arr.length;pos++){
+			System.out.println("Original "+arr[pos]+ "temp "+temp[index[pos]]);
+			if(arr[pos]!=temp[index[pos]])
+				temp=reArrange(temp, index,  index[pos], arr[pos]);
+		}
+		
+		System.out.print("ReArranged Array");
+		printArray(temp);
+		
+	}
+	public static int[] reArrange(int[] arr, int[] index, int pos, int val){
+		if(index.length!=arr.length) return arr;
+		if(pos>index.length) return arr;
+		if(arr[pos]==val) return arr;
+		int tmp= arr[pos];
+		arr[pos]= val;
+		return	reArrange(arr,index,index[pos],tmp);
+	}
+	
+	public static void printArray(int[] arr){
+		StringBuffer str= new StringBuffer();
+		str.append("[");
+		for(int i: arr){
+			str.append(i).append(" ");
+		}
+		str.append("]\n");
+		System.out.println(str.toString());
+	}
+}
+
