@@ -1,0 +1,27 @@
+
+public class DoubleTree {
+
+	public static void main(String[] args) {
+		Tree t= new Tree(4);
+		t.addNode(2);
+		t.addNode(3);
+		t.addNode(1);
+		t.addNode(6);
+		t.addNode(5);
+		t.addNode(8);
+		System.out.println(Double(t));
+	}
+	public static Tree Double(Tree t){
+		if(t==null) return null;
+		if(t.left==null) {
+			t.left=new Tree(t.val);
+			return t;
+		}
+		Tree temp=t.left;
+		t.left= new Tree(t.val);
+		t.left.left=Double(temp);
+		t.right=Double(t.right);
+		return t;
+	}
+	
+}
