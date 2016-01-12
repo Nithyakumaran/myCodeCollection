@@ -1,0 +1,23 @@
+public class SerializeBinaryTree{
+	public static void main(String[] args){
+	System.out.println(“Program to remove Half Nodes”);		
+Tree t= new Tree(4);
+		t.addNode(2);
+		t.addNode(1);
+		t.addNode(3);
+		t.addNode(6);
+		t.addNode(8);
+		t.addNode(7);
+		t.addNode(9);
+		
+	}
+	public static String serialize(Tree t){
+		StringBuffer str= new StringBuffer();
+		if(t!=null) str.append(t.val).append(”,”);
+		if(t.left!=null) str.append(serialize(t.left)).append(“,”);
+		else str.append(-1).append(“,”);
+		if(t.right!=null) str.append(serialize(t.right)).append(“,”);
+		else str.append(-1).append(“,”);
+		return str.toString();
+	}
+}
