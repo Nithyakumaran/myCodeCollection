@@ -1,0 +1,35 @@
+import java.util.HashMap;
+
+/**
+ * A Pythagorean triplet is a set of three integers 
+ * a, b and c such that a2 + b2 = c2.
+ * Given a limit, generate all positive Pythagorean 
+ * triplets such that all values in triplets are smaller 
+ * than given limit.
+ * 
+ * @author nithya
+ * @see http://www.geeksforgeeks.org/generate-pythagorean-triplets/
+ *
+ */
+public class PythagoreanTriplet {
+	HashMap<Integer,String> h= new HashMap<Integer,String>();
+	public static void main(String[] args){
+		System.out.println("Generate all Pythagoren Triplets");
+		int n=10;
+		generateTriplets(n, 1, 1, 2);
+		
+	}
+	static void generateTriplets(int n, int a, int b, int c){
+		if(a>n|| b>n || c>n || a+b>c) return;
+		if(sq(a)+sq(b)==sq(c)) System.out.println("Triplet {a:"+a+" b:"+b+" c:"+c+"}");
+		while(a<n&&b<n && c<n ){
+			generateTriplets(n, a,b,c+1);
+			generateTriplets(n, a,b+1,c);
+			generateTriplets(n, a+1,b,c+1);
+		}
+		
+	}
+	static int sq(int val){
+		return val*val;
+	}
+}
