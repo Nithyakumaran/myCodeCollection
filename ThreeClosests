@@ -1,0 +1,45 @@
+package threeClosest;
+/**
+ * Given three sorted arrays A[], B[] and C[], 
+ * find 3 elements i, j and k from A, B and C respectively 
+ * such that max(abs(A[i] – B[j]), abs(B[j] – C[k]), 
+ * abs(C[k] – A[i])) is minimized. Here abs() indicates absolute value.
+ * @author nithya
+ * @see http://www.geeksforgeeks.org/find-three-closest-elements-from-given-three-sorted-arrays/
+ */
+public class ThreeClosests {
+	public static void main(String[] args){
+		System.out.println("Find the closests tuple");
+		int  	A[] = {1, 4, 10},
+				B[] = {2, 15, 20},
+				C[] = {10, 12};
+		
+	}
+	
+	public static void findClosest(int[] A, int[] B, int[] C){
+		int[] result = new int[3];
+		int difference;
+		
+		for(int a: A){
+			int b= B[binaryClosest(B, a, 0, B.length-1)];
+			
+		}
+	}
+	
+	public static int binaryClosest(int[] arr, int val, int start, int end){
+		if(start<end) return -1;
+		int mid= (start+end)/2;
+		if(arr[mid]==val) return mid;
+		int diff= Math.abs(arr[mid]-val);
+		int closestPos= closestOfThree(arr, val, mid);
+		
+		return 0;
+	}
+	public static int closestOfThree(int arr[], int val, int pos){
+		int midVal=Math.abs(arr[pos]-val), leftVal,rightVal;
+		leftVal= pos-1>=0?arr[pos-1]:Integer.MAX_VALUE;
+		rightVal=pos+1< arr.length?arr[pos+1]:Integer.MAX_VALUE;
+		
+		return midVal<leftVal?(midVal<rightVal?pos:pos+1):(leftVal<rightVal?pos-1:pos+1);
+	}
+}
