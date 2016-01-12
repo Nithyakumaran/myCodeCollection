@@ -1,0 +1,84 @@
+
+public class NTree {
+	
+	int val;
+	NTree[] child;
+	int numberOfChild;
+	public NTree(int val){
+		this.val=val;
+		numberOfChild=0;
+	}
+	public NTree(int val, int childSize){
+		this.val=val;
+		child= new NTree[childSize];
+		numberOfChild=0;
+	}
+	
+	public void setChild(int size){
+		child= new NTree[size];
+		numberOfChild=0;
+	}
+	
+	public void addChild(int val){
+		child[numberOfChild++]= new NTree(val);
+		
+	}
+	
+	public static NTree mirror(NTree t){
+		if(t==null) return null;
+		if(t.child!=null){
+			t.child= reverse(t.child);
+		}
+		for(NTree c: t.child)
+			mirror(c);
+		
+		return t;
+	}
+	
+	public static NTree[] reverse(NTree[] t){
+		NTree[] temp= new NTree[t.length];
+		int i=0;
+		for(int j=t.length-1;j>=0;j--){
+			temp[i]=t[j];
+			i++;
+		}
+		return temp;
+	}
+	
+	public String toString(){
+		StringBuffer str= new StringBuffer();
+		str.append(this.val+" ");
+		if(child!=null){
+			str.append("\n");
+			for(NTree n: child){
+				str.append((n!=null?n.toString():" ")+"\t");
+			}
+		}
+		return str.toString();
+		
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(" Program to mirror N ary Tree");
+		NTree t= new NTree(10,4);
+		t.addChild(2);
+		t.addChild(34);
+		t.addChild(56);
+		t.addChild(100);
+		
+		t.child[1].setChild(1);
+		t.child[1].addChild(1);
+		t.child[3].setChild(3);
+		t.child[3].addChild(7);
+		t.child[3].addChild(8);
+		t.child[3].addChild(9);
+		
+		System.out.println(t);
+		
+		NTree k=mirror(t);
+		
+		System.out.println(k);
+		
+	}
+
+}
