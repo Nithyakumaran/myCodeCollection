@@ -1,0 +1,46 @@
+
+public class BoundaryTraversal {
+
+	public static void main(String[] args) {
+		
+		Tree t= new Tree(4);
+		t.addNode(2);
+		t.addNode(1);
+		t.addNode(3);
+		t.addNode(6);
+		t.addNode(5);
+		t.addNode(8);
+		
+		printBoundary(t);
+
+	}
+	/**
+	 * 1. Print Left Nodes
+	 * 2. Print Leaf Nodes Left to right
+	 * 3. Print Right Nodes
+	 * @param t
+	 */
+	public static void printBoundary(Tree t){
+		if(t==null) return;
+		System.out.print(t.val+"-->");
+		printLeftNodes(t.left);
+		printLeafNodes(t);
+	}
+	
+	public  static void printLeftNodes(Tree t){
+		if(t.left==null) return;
+		System.out.print(t.val+"-->");
+		printLeftNodes(t.left);
+	}
+	public static void printLeafNodes(Tree t){
+		if(t==null) return;
+		if(t.left==null && t.right==null)
+			System.out.print(t.val+"-->");
+		printLeafNodes(t.left);
+		printLeafNodes(t.right);
+	}
+	public static void printRightNodes(Tree t){
+		
+	}
+
+}
