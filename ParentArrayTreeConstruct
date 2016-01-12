@@ -1,0 +1,35 @@
+public class ParentArrayTreeConstruct{
+
+public static void main(String[] args){
+
+System.out.println(“program to construct Tree from parent array”);
+int[] parentArray= {1, 5, 5, 2, 2, -1, 3};
+Tree root=createTree(parentArray);
+
+}
+
+public static Tree createTree(int [] parentArray){
+
+	if(parentArray.length<1) return null;
+Tree[] created = new Tree[parent.length];
+Tree root;
+for(int i=0;i<parentArray.length;i++)
+root= constructTree(parentArray, created, i);
+
+return root; 	
+}
+
+public static Tree constructTree(int[] parentArray, Tree[] created, int i){
+	
+Tree node;
+Tree root;
+	if(created[i]!=null) return created;
+if(created[i]==-1) node= new Tree(i);
+else root= constructTree(parentArray, created, created[i]);
+if(root.left!=null)
+
+
+	
+}
+
+}
