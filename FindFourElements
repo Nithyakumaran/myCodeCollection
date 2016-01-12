@@ -1,0 +1,46 @@
+import java.util.HashMap;
+
+
+/**
+ * Given an array of distinct integers, 
+ * find if there are two pairs (a, b) and (c, d) 
+ * such that a+b = c+d, and a, b, c and d are distinct elements. 
+ * If there are multiple answers, then print any of them.
+ * @author nithya
+ * @see http://www.geeksforgeeks.org/find-four-elements-a-b-c-and-d-in-an-array-such-that-ab-cd/
+ */
+
+/**
+ * Design
+ * Use Hashing
+ * 
+ */
+public class FindFourElements {
+	public static void main(String[] args){
+		System.out.println("Find Sum of Couple of couple that are same");
+		int[] arr= {3, 4, 7, 1, 12, 9};
+		findCouplesthatMatch(arr);
+	}
+	
+	public static void findCouplesthatMatch(int[] arr){
+		HashMap<Integer,Integer[]> h= new HashMap<Integer,Integer[]>();
+		for(int i=0; i<arr.length;i++){
+			for(int j=i;j<arr.length;j++){
+				if(i==j) continue;
+				int sum= arr[i]+arr[j];
+				if(h.containsKey(sum)) printCouple(h.get(sum),arr[i],arr[j]);
+				else h.put(sum, new Integer[]{arr[i],arr[j]});
+				
+			}
+		}
+	}
+	
+	public static void printCouple(Integer[] arr, int i, int j){
+		StringBuffer stb = new StringBuffer();
+		stb.append("Match found \t");
+		stb.append("{"+arr[0]+","+arr[1]+"}\t");
+		stb.append("{"+i+","+j+"}\t");
+		System.out.println(stb);
+		
+	}
+}
