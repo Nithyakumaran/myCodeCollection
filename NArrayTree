@@ -1,0 +1,29 @@
+import java.util.ArrayList;
+
+public class NArrayTree {
+	public String val;
+	public ArrayList<NArrayTree> children;
+	
+	public NArrayTree(String val){
+		this.val=val;
+		this.children= new ArrayList<NArrayTree>();
+	}
+	public void addChildNode(String val){
+		NArrayTree n= new NArrayTree(val);
+		this.children.add(n);
+	}
+	public ArrayList<NArrayTree> getChildren(){
+		return children;
+	}
+	
+	public String toString(){
+		StringBuffer str= new StringBuffer();
+		str.append("-"+this.val+"-");
+		if(children.size()>0){
+			str.append("\n");
+			for(NArrayTree n: children)
+				str.append("-"+n+"-");
+		}
+		return str.toString();
+	}
+}
