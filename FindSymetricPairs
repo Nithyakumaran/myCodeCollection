@@ -1,0 +1,34 @@
+import java.util.HashMap;
+
+
+/**
+ * Two pairs (a, b) and (c, d) are said to be symmetric
+ * if c is equal to b and a is equal to d. 
+ * For example (10, 20) and (20, 10) are symmetric. 
+ * Given an array of pairs find all symmetric pairs in it.
+ * @author nithya
+ * @see http://www.geeksforgeeks.org/given-an-array-of-pairs-find-all-symmetric-pairs-in-it/
+ *
+ */
+public class FindSymetricPairs {
+	 public static void main (String[] args){
+		 System.out.println("Find Symmetric Pairs");
+		 int[][] arr=	{{11, 20}, 
+				 		{30, 40},
+				 		{5, 10}, 
+				 		{40, 30}, 
+				 		{10, 5}};
+		 printSymmetricPairs(arr);
+	 }
+	 
+	 public static void printSymmetricPairs(int[][] arr){
+		 HashMap <Integer,Integer> h= new HashMap<Integer,Integer>();
+		 for(int[] row:arr){
+			 if(h.containsKey(row[1]) && h.get(row[1])==row[0]) 
+				 System.out.println("{"+row[0]+","+row[1]+"} is a Symmetric Pair ");
+			 else
+				 h.put(row[0], row[1]);
+		 }
+		 
+	 }
+}
