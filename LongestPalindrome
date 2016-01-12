@@ -1,0 +1,20 @@
+class LongestPalindrome{
+	public static void main(String[] args){
+		System.out.println(“Program to Print Longest Palindromic Substring”);
+		String str=”doggodn”;
+		boolean table[][]= new boolean[str.length()][str.length()];
+		longestPalindrome(str,str.length()-1, str.length-2, table);
+	}
+public static int longestPalindrome(String str,int startPos,int endPos,boolean[][] table){
+		if(endPos<startPos) return 0;
+		if(startPos==endPos) {
+table[start][end]= true;
+return 1;
+		}
+		if(Math.abs(startPos-endPos)==1){
+			if(str.charAt(startPos)== str.charAt(endPos)) {
+				table[
+			}
+} 
+	}
+}
