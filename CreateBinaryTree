@@ -1,0 +1,36 @@
+/**     Step1 : Loop through i- N
+*       Step 2: For every i, create a Tree with i as the root node
+*       Step3 :	Pass the root node with remaining array as Child Node
+**/
+class CreateBinaryTree{
+	public static void main(String[] args){
+		System.out.println(“Program to print all possible BST”);
+		int[] arr = {4, 5, 7};
+		createTrees(arr,0,arr.length);	
+	}
+	
+	public static ArrayList<Tree> createTrees(int[] arr, int start, int end){
+		ArrayList<Tree> trees= new ArrayList<Tree>();
+		if(end<start){
+		arr.add(null);
+ return arr;
+}
+		
+		for(int i=start;i<end;i++){
+			ArrayList<Tree> leftTrees= createTrees(arr,start, i-1);
+			ArrayList<Tree> rightTrees= createTrees(arr,i+1,end);
+
+			for(int j=0;j<leftTree.length();j++){
+				for(int k= 0;k<rightTree.length();k++){
+				Tree t= new Tree(arr[i]);
+				t.left= leftTrees[j];
+				t.right=rightTrees[k];
+			trees.push(t);	
+				}
+			}
+
+		}
+		return trees
+	}
+	
+}
