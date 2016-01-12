@@ -1,0 +1,40 @@
+
+public class SingleValuedTrees {
+
+	public static void main(String[] args) {
+		System.out.println("Count Single valued Sub Trees");
+		Tree t = new Tree(5);
+		t.addNode(4);
+		t.addNode(3);
+		t.addNode(4);
+		t.addNode(5);
+		t.addNode(5);
+		t.left.left.val=4;
+		System.out.println(t);
+		System.out.println(countSingleValuedSubTrees(t));
+	}
+
+	public static int countSingleValuedSubTrees(Tree t) {
+
+		int leftCounter = 0;
+		int rightCounter = 0;
+		if (t == null)
+			return 0;
+		else if (t.left == null && t.right == null)
+			return 1;
+		else {
+
+			leftCounter = countSingleValuedSubTrees(t.left);
+			rightCounter = countSingleValuedSubTrees(t.right);
+			if ((t.left == null ^ t.right == null) && t.val == (t.left == null ? t.right.val : t.left.val))
+				return 1 + leftCounter + rightCounter;
+			else if (t.left.val == t.val && t.right.val == t.val)
+				return 1 + leftCounter + rightCounter;
+			else {
+				return leftCounter + rightCounter;
+			}
+		}
+
+	}
+
+}
