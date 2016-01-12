@@ -1,0 +1,28 @@
+
+public class CopyBits {
+
+	public static void main(String[] args) {
+		System.out.println("Program to replace copy bits from one int to another");
+		int n = 256;
+		int m = 35;
+		System.out.println(Integer.toBinaryString(n));
+		System.out.println(Integer.toBinaryString(m));
+		System.out.println(updateBits(n, m, 2, 6));
+	}
+
+	public static int updateBits(int n, int m, int i, int j) {
+		int max = ~0;
+		int left = max - ((i<<j)-1);
+		System.out.println(left+" Its binary equivalent = "+Integer.toBinaryString(left));
+		int right = (i<<i)-1;
+		System.out.println(right+" Its binary equivalent = "+Integer.toBinaryString(right));
+		
+		int mask = left| right;
+		
+		System.out.println(mask+" Its binary equivalent = "+Integer.toBinaryString(mask));
+		int result=(n&mask)| (m<<i);
+		System.out.println(result+" Its binary equivalent = "+Integer.toBinaryString(result));
+		return result;
+	}
+
+}
