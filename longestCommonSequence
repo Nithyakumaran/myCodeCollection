@@ -1,0 +1,40 @@
+class longestCommonSequence{
+	static int[][] map; 
+	public static void main(String[] args){
+		System.out.println("Program to print the longestCommonSequence");
+		String str1= "From this we can observe the following simple fact: if the two strings start with the same letter, it's always safe to choose that starting letter as the first character of the subsequence.";
+		String str2= "it's always safe to choose that starting letter as the first character";
+		
+		
+		map= new int[str1.length()][str2.length()];
+		initMap();
+		long startTime = System.currentTimeMillis();
+		System.out.println("Maximum Lenght"+maxCommonSeq(str1,0,str2,0));
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("Run Time"+totalTime);
+	}
+	
+	public static int maxCommonSeq(String chr1, int x1,  String chr2, int x2){
+		if(chr1.length()<1 || chr2.length()<1 || x1>chr1.length()-1|| x2>chr2.length()-1) return 0;
+		else if(x1<0 || x2<0 ) return 0;
+		else if(map[x1][x2]>Integer.MIN_VALUE) return map[x1][x2];
+		else if(chr1.charAt(x1)==chr2.charAt(x2)) 	return map[x1][x2]=1+maxCommonSeq(chr1,  x1+1,  chr2, x2+1);			
+		else return map[x1][x2]=max(maxCommonSeq(chr1,x1+1,chr2,x2+1),maxCommonSeq(chr1,x1,chr2,x2+1),maxCommonSeq(chr1,x1+1,chr2,x2));
+	}
+	
+	public static int max(int ... val){
+		int max=Integer.MIN_VALUE;
+		for(int i: val){
+			if(max<i) max=i;
+		}
+		return max;
+	}
+	
+	static void initMap(){
+		if(map==null) return;
+		for(int i=0;i<map.length;i++)
+				for(int j=0;j<map[0].length;j++)
+						map[i][j]=Integer.MIN_VALUE;
+	}
+}
