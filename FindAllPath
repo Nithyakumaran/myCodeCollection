@@ -1,0 +1,116 @@
+package findAllPath;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Given a n*n matrix where numbers all numbers 
+ * are distinct and are distributed from range 1 to n2, 
+ * find the maximum length path (starting from any cell) 
+ * such that all cells along the path are increasing 
+ * order with a difference of 1.
+ * 
+ * @author nithya
+ * @see http://www.geeksforgeeks.org/find-the-longest-path-in-a-matrix-with-given-constraints/
+ *
+ */
+public class FindAllPath {
+	
+	static HashMap<String, Integer> h = new HashMap<String, Integer>(); 
+	public static void main(String[] args){
+		System.out.println("Find Maximum length Path in a matrix");
+		int[][] arr= 	{{1, 2, 9},
+						{5, 3, 8},
+						{4, 6, 7}};
+		findBestPath(arr);
+		
+	}
+	
+	public static void findBestPath(int[][] arr){
+		int maxPath=Integer.MIN_VALUE;
+		int pos[]= new int[2];
+		for(int i=0; i<arr.length;i++){
+			for(int j=0; j<arr[0].length;j++){
+				int pathLength=findPathLength(arr, new int[]{i,j});
+				if(pathLength>maxPath) {
+					maxPath= pathLength;
+					pos[0]=i;
+					pos[1]=j;
+				}
+				
+			}
+		}
+		StringBuffer str= new StringBuffer();
+		str.append("The Max Path starts at {"+pos[0]+","+pos[1]+"} value is =" + arr[pos[0]][pos[1]]+" with max value="+maxPath);
+		System.out.println(str);
+		System.out.println("Printing HashMap");
+		printCollection();
+	}
+	
+	
+	static void printCollection(){
+		StringBuffer stb= new StringBuffer();
+		for(Map.Entry<String, Integer> m:h.entrySet()){
+			stb.append(m.getKey());
+			stb.append(" value ="+m.getValue());
+			stb.append("\n");
+		}
+		System.out.println(stb);
+	}
+	//Iterate through neighbours and find path
+	public static int findPathLength(int[][] arr, int[] pos){
+		process(arr, pos);
+		String objPos= "{"+pos[0]+","+pos[1]+"}";
+		if(h.containsKey(objPos)) return h.get(objPos);
+		int[][] neighbours=move( arr, pos);
+		 int max=Integer.MIN_VALUE;
+		 if (neighbours==null || isEmpty(neighbours) ) {
+			 h.put(objPos,1);
+			 return 1;
+		 }
+		 else{
+			 for(int[] i: neighbours){
+				 if(i==null) continue;
+				int tempVal= findPathLength(arr, i);
+				if(max<tempVal) max=tempVal;
+			 }
+			 h.put(objPos, ++max);
+			 return max;
+		 }
+		 
+	}
+	
+	public static void process(int[][] arr, int[] pos){
+		StringBuffer str= new StringBuffer();
+		str.append("Processing position {");
+		str.append(pos[0]+","+pos[1]);
+		str.append("} value ="+arr[pos[0]][pos[1]]);
+		System.out.println(str);
+	}
+	static boolean isEmpty(int[][] arr){
+		boolean empty= true;
+		for(int i=0;i<arr.length;i++){
+			if( arr[i] != null ) empty=false;
+		}
+		return empty;
+	}
+	public static int[][] move(int[][] arr, int[] pos){
+		//left
+		int[][] neighbours= new int [4][2];
+		int val= arr[pos[0]][pos[1]]+1;
+		int left= pos[0]-1;
+		int right= pos[0]+1;
+		int top=pos[1]-1;
+		int bottom= pos[1]+1;
+		
+		neighbours[0]= left>=0 && val==arr[left][pos[1]]? new int[]{left,pos[1]} :null;
+		neighbours[1] =right<arr[0].length && val==arr[right][pos[1]]? new int[]{right,pos[1]} :null;
+		neighbours[2]=top>=0 && val==arr[pos[0]][top]? new int[]{pos[0],top} :null;
+		neighbours[3]=bottom<arr.length && val==arr[pos[0]][bottom]? new int[]{pos[0],bottom} :null;
+		
+		
+		return neighbours;
+	}
+	
+}
