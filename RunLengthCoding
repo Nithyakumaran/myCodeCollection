@@ -1,0 +1,27 @@
+class RunLengthCoding{
+	public static void main(String[] args){
+		String str="wwwwaaadexxxxxx";
+		System.out.println("Original String:: "+str+" run length coded ::"+runLengthCode(str));
+	}
+	//1. Create a StringBuffer.
+	//2. Pick ith character
+	//3. check if the ith char == i+th char increment counter
+	//4. else append ith charcter and count to StringBuffer. 
+	//5. Reset counter and move to i+1th character
+	static String runLengthCode(String str){
+	
+		StringBuffer stub= new StringBuffer();
+		if(str.length()<1) return str;
+		int counter=1;
+		
+		for(int i=0;i<str.length()-1;i++){
+			if(str.charAt(i)==str.charAt(i+1)) counter++;
+			else {
+				stub.append(""+str.charAt(i)).append(counter);
+				counter=1;
+			}
+		}
+		stub.append(""+str.charAt(str.length()-1)).append(counter);
+		return stub.toString();
+	}
+}
