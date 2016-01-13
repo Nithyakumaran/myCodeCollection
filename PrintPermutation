@@ -1,0 +1,38 @@
+class PrintPermutation{
+	public static void main(String[] args){
+		String str1="ABC";
+		String str2= "AB";
+		print(str1, 0);
+		System.out.println("**************************");
+		print(str2, 0);
+		
+	}
+	
+	//1. Lock the ith character
+	//2. Replace ith character with all the i+1 th characters
+	//3. Print list
+	//4. Recur with i+1th character
+	
+	static void print(String str, int pos){
+		if(pos<0) return;
+		if(str.length()<2|| pos>=str.length()-1) {
+			System.out.println(str);
+			return;
+		}
+		for(int i=pos;i<str.length();i++)
+			if(i!=pos) print(swap(str,pos,i),pos+1);
+		
+		System.out.println(str);
+	}
+	
+	static String swap(String str, int i, int j){
+		if(i<0 || j<0) return str;
+		if(i>str.length()-1||j>str.length()-1) return str;
+		if(str.length()<2) return str;
+		
+		char[] c= str.toCharArray();
+		
+		c[i]= (char)(c[i]^c[j]^(c[j]=c[i]));
+		return new String(c);
+	}
+}
