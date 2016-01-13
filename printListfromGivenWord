@@ -1,0 +1,48 @@
+class printListfromGivenWord{
+	public static void main(String[] args){
+		String str="car";
+		String[] strList={"sunday","utensils","cnursea","tcesta","kilo","car"};
+		printMatchWords(str, strList);
+	}
+	//1. Create a binary map of str;
+	//2. Iterate through strList 
+	//3. For every string in strList, clone map and reduce the count
+	//4. If the sum of values in binary map is 0 print string from strList
+	static void printMatchWords(String str, String[] strList){
+		
+		int[] binaryMap= new int[128];
+		//Set binary map to array=0;
+		for(int i=0;i<binaryMap.length;i++)
+			binaryMap[i]=0;
+		
+		for(int i=0;i<str.length();i++)
+			binaryMap[str.charAt(i)]++;
+			
+			
+		for(String s:strList){
+			
+			int[] tempMap= arrayCopy(binaryMap);
+			
+			for(int i=0;i<s.length();i++){
+				if(tempMap[s.charAt(i)]>0) tempMap[s.charAt(i)]--;
+			}
+			if(sum(tempMap)==0) System.out.println(s);
+		}	
+		
+		
+		
+	}
+	
+	static int sum(int[] arr){
+		int sum=0;
+		for(int i:arr)	
+				sum+=i;
+		return sum;
+	}
+	static int[] arrayCopy(int[] arr){
+		int[] temp = new int[arr.length];
+		for(int i=0;i<arr.length;i++)
+			temp[i]= arr[i];
+		return temp;
+	}
+}
