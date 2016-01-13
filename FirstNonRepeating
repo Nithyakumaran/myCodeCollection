@@ -1,0 +1,24 @@
+class FirstNonRepeating{
+	public static void main(String[] args){
+		String str="MEdhok Memories";
+		System.out.println("First Non Repeating character for "+str+" is "+findFirstNonRepeating(str));
+	}
+	
+	//1. Create ascii array
+	//2. Initialize j = 1st character
+	//3. Loop and update count. while(count character at j >1) j++
+	//4. return charAt(j) when loop ends
+	static String findFirstNonRepeating(String str){
+		int count[]= new int[128];
+		//str= str.toLowerCase();
+		for(int i=0;i<count.length;i++)
+			count[i]=0;
+		int j=0;
+		for(int i=0;i<str.length();i++){
+			count[str.charAt(i)]++;
+			while(count[str.charAt(j)]>1) j++;
+		}
+		
+		return ""+str.charAt(j);
+	}
+}
